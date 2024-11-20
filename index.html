@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página con Chatbot</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFA500; /* Fondo naranja */
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 20px;
+      background-color: #FF8C00; /* Naranja más oscuro para el encabezado */
+      color: white;
+    }
+
+    header img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    h1, h2 {
+      margin: 20px 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+      text-align: center;
+      width: 150px; /* Tamaño uniforme */
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background-color: #0056b3;
+    }
+
+    .button:active {
+      transform: scale(0.9);
+    }
+
+    #homePage, #servicesPage {
+      display: none;
+    }
+
+    #homePage.active, #servicesPage.active {
+      display: block;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .button-container li {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header con Logo -->
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/070_Logo.png" alt="Logo 070 Nuevo León">
+    <h1>Bienvenido al Portal 070</h1>
+  </header>
+
+  <!-- Página de Bienvenida -->
+  <div id="homePage" class="active">
+    <h2>Seleccione una opción:</h2>
+    <a href="tel:911" class="button">Llamar al 911</a>
+    <button class="button" onclick="showPage('servicesPage')">Servicios del 070</button>
+  </div>
+
+  <!-- Página de Servicios -->
+  <div id="servicesPage">
+    <h2>Servicios del 070</h2>
+    <ul class="button-container">
+      <li><button class="button" onclick="openChat()">Orientación</button></li>
+      <li><button class="button" onclick="openChat()">Reportes</button></li>
+      <li><button class="button" onclick="openChat()">Quejas</button></li>
+      <li><button class="button" onclick="openChat()">Solicitudes</button></li>
+      <li><button class="button" onclick="openChat()">Acompañamiento</button></li>
+      <li><button class="button" onclick="openChat()">Asesoría Especializada</button></li>
+    </ul>
+    <button class="button" onclick="showPage('homePage')">Volver al inicio</button>
+  </div>
+
+  <!-- Script para el chatbot -->
+  <script type="text/javascript">
+    (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        if (!document.getElementById('root')) {
+          var root = d.createElement('div');
+          root.id = 'root';
+          d.body.appendChild(root);
+        }
+        if (window.myChatWidget && typeof window.myChatWidget.load === 'function') {
+          window.myChatWidget.load({
+            id: '4cb66647-6610-4f61-ab90-9a5b1722401e',
+          });
+        }
+      };
+      v.src = "https://agentivehub.com/production.bundle.min.js";
+      v.type = "text/javascript";
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+  <!-- Scripts de navegación -->
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('#homePage, #servicesPage').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function openChat() {
+      alert('El chatbot está listo para responder tus preguntas.');
+    }
+  </script>
+</body>
+</html>
